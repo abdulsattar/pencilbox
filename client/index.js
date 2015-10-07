@@ -9,30 +9,24 @@ import GradesList from './components/grades-list';
 import { IndexRoute, Route } from 'react-router';
 import { ReduxRouter, routerStateReducer, reduxReactRouter } from 'redux-router';
 import createHistory from 'history/lib/createBrowserHistory';
-import initialState from './data';
+import pencilBoxReducer from './reducers'
 
 require('./styles/main.scss');
 
-const pencilBox = (state = initialState, action) => {
-    switch (action.type) {
-        default:
-            return state;
-    }
-};
 
 const reducer = combineReducers({
     router: routerStateReducer,
-    pencilBox: pencilBox
+    pencilBox: pencilBoxReducer
 });
 
-const store =
-    reduxReactRouter({ createHistory })(createStore)(reducer);
+const store = createStore(pencilBoxReducer);
+    //reduxReactRouter({ createHistory })(createStore)(reducer);
 
 console.log(store.getState());
 
 React.render(
     <Provider store={store}>
-        {() => <ReduxRouter>
+        {/*() => <ReduxRouter>
             <Route path="/" component={App}>
                 <Route path="grades/:gradeId" component={Grade}>
                     <Route path="subjects/:subjectId" component={Subject}>
@@ -40,7 +34,8 @@ React.render(
                     </Route>
                 </Route>
             </Route>
-        </ReduxRouter>}
+        </ReduxRouter>*/}
+        {() => <App />}
     </Provider>,
     document.getElementById('main')
 );

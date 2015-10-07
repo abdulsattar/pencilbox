@@ -1,11 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router';
 
 class GradesList extends React.Component {
     render() {
         const gradeNodes = this.props.grades.map((g) => {
             return <li className={`grade theme-orange-bg-hover link grade-${g.id}`}>
-                <Link to={`/grades/${g.id}`}>{g.id}</Link>
+                <a onClick={() => this.props.onSelectGrade(g)}>{g.id}</a>
             </li>;
         });
         return <div className="landing-page">
