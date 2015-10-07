@@ -10,6 +10,8 @@ export default (state = initialState, action) => {
             return Object.assign({}, state, {selectedGrade: action.grade});
         case 'SELECT_SUBJECT':
             return Object.assign({}, state, {selectedSubject: action.subject});
+        case 'SELECT_CHAPTER':
+            return Object.assign({}, state, {selectedChapter: action.chapter});
         default:
             return state;
     }

@@ -3,17 +3,14 @@ import React from 'react';
 class Subject extends React.Component {
     render() {
         const {subject, grade, selectedChapter, onSelectChapter} = this.props;
-        const applications = subject.apps.filter((app) => app.type === "apps");
-        const videos = subject.apps.filter((app) => app.type === "videos");
-        const quizzes = subject.apps.filter((app) => app.type === "quiz");
-        const applicationsForChapter = (chapter) => applications.filter((app) => app.subject === chapter.name);
-        const videosForChapter = (chapter) => videos.filter((app) => app.subject === chapter.name);
-        const quizzesForChapter = (chapter) => quizzes.filter((app) => app.subject === chapter.name);
+        const applications = selectedChapter ? selectedChapter.apps.filter((app) => app.type === "apps") : [];
+        const videos = selectedChapter ? selectedChapter.apps.filter((app) => app.type === "videos") : [];
+        const quizzes = selectedChapter ? selectedChapter.apps.filter((app) => app.type === "quiz") : [];
         const children = selectedChapter ? [<li className="row app-panel">
             <div className="row-header border">Applications</div>
             <ul className="content-items border t-center">
                 {
-                    applicationsForChapter(selectedChapter).map(app => {
+                    applications.map(app => {
                         return <li className="item border">
                             <a href={app.exec}
                                className="a-container wrapper theme-orange-bg-hover">
@@ -33,7 +30,7 @@ class Subject extends React.Component {
                 <div className="row-header border">Videos</div>
                 <ul className="content-items border t-center">
                     {
-                        videosForChapter(selectedChapter).map(app => {
+                        videos.map(app => {
                             return <li className="item border">
                                 <a href={app.exec}
                                    className="a-container wrapper theme-orange-bg-hover">
@@ -54,7 +51,7 @@ class Subject extends React.Component {
             <li className="row quiz-panel">
                 <div className="row-header border">Quiz</div>
                 <ul className="content-items border t-center">
-                    {quizzesForChapter(selectedChapter).map(app => {
+                    {quizzes.map(app => {
                         return <li className="item border">
                             <a href={app.exec}
                                className="a-container wrapper theme-orange-bg-hover">
@@ -131,7 +128,7 @@ class Subject extends React.Component {
                                     {subject.chapters.map(chapter => {
                                         return <li
                                             ng-className="isCurrentChapter(chapter.id) ? 'selected theme-orange-bg t-left' : 't-left'">
-                                            <a onClick={onSelectChapter} className="a-container">
+                                            <a onClick={() => onSelectChapter(chapter)} className="a-container">
                                                 <div className="img-container circle">
                                                     <img src={`images/topics/grey/g-${chapter.id}.png`} alt={chapter.id}
                                                          className="chapter-img"/>
