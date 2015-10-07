@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import GradesList from './grades-list';
 import Grade from './grade';
 import Subject from './subject';
-import Chapter from './chapter';
 
 @connect(state => state)
 class App extends React.Component {
@@ -12,12 +11,11 @@ class App extends React.Component {
         const {dispatch, grades, selectedGrade, selectedSubject, selectedChapter} = this.props;
 
         let children = null;
-        if (selectedGrade) {
-            children = <Grade grade={selectedGrade}/>;
-        } else if (selectedSubject) {
-            children = <Subject subject={selectedSubject}/>;
-        } else if (selectedChapter) {
-            children = <Chapter chapter={selectedChapter}/>;
+        if (selectedSubject) {
+            children = <Subject grade={selectedGrade} subject={selectedSubject} selectedChapter={selectedChapter}/>;
+        } else if (selectedGrade) {
+            children = <Grade grade={selectedGrade}
+                              onSelectSubject={(subject) => dispatch({type: 'SELECT_SUBJECT', subject})}/>;
         } else {
             children = <GradesList grades={grades} onSelectGrade={(grade) => dispatch({type: 'SELECT_GRADE', grade})}/>
         }

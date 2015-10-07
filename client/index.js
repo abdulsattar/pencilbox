@@ -3,7 +3,6 @@ import {Provider} from 'react-redux';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import App from './components/app';
 import Subject from './components/subject';
-import Chapter from './components/chapter';
 import Grade from './components/grade';
 import GradesList from './components/grades-list';
 import { IndexRoute, Route } from 'react-router';

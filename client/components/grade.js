@@ -39,7 +39,7 @@ class Grade extends React.Component {
                                 <ul className="subjects subject-list t-center">
                                     {this.props.grade.subjects.map(subject => {
                                         return <li data-subject={subject.name}>
-                                            <a className="a-container">
+                                            <a onClick={() => this.props.onSelectSubject(subject)} className="a-container">
                                                 <div className="img-container">
                                                     <img src={`images/subjects/${subject.name}.png`} alt="{subject.name}" className="subject-img"/>
                                                 </div>
