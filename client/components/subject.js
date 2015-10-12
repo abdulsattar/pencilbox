@@ -2,7 +2,7 @@ import React from 'react';
 
 class Subject extends React.Component {
     render() {
-        const {subject, grade, selectedChapter, onSelectChapter} = this.props;
+        const {subject, grade, selectedChapter, onSelectChapter, onDeselectSubject} = this.props;
         const applications = selectedChapter ? selectedChapter.apps.filter((app) => app.type === "apps") : [];
         const videos = selectedChapter ? selectedChapter.apps.filter((app) => app.type === "videos") : [];
         const quizzes = selectedChapter ? selectedChapter.apps.filter((app) => app.type === "quiz") : [];
@@ -99,7 +99,7 @@ class Subject extends React.Component {
                             <div className="wrapper">
                                 <div className="grade-box t-center">
                                     <div className="grade-title">Grade</div>
-                                    <a href="#/grades"
+                                    <a href="#/grades" onClick={onDeselectSubject}
                                        className="grade-text theme-orange-bg border a-container">{grade.id}</a>
                                 </div>
                             </div>

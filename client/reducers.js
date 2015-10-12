@@ -12,6 +12,8 @@ export default (state = initialState, action) => {
             return Object.assign({}, state, {selectedSubject: action.subject});
         case 'SELECT_CHAPTER':
             return Object.assign({}, state, {selectedChapter: action.chapter});
+        case 'DESELECT_SUBJECT':
+            return Object.assign({}, state, {selectedSubject: null});
         default:
             return state;
     }

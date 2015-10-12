@@ -12,7 +12,11 @@ class App extends React.Component {
 
         let children = null;
         if (selectedSubject) {
-            children = <Subject grade={selectedGrade} subject={selectedSubject} selectedChapter={selectedChapter} onSelectChapter={(chapter) => dispatch({type: 'SELECT_CHAPTER', chapter})}/>;
+            children = <Subject grade={selectedGrade}
+                                subject={selectedSubject}
+                                selectedChapter={selectedChapter}
+                                onSelectChapter={(chapter) => dispatch({type: 'SELECT_CHAPTER', chapter})}
+                                onDeselectSubject={() => dispatch({type: 'DESELECT_SUBJECT'})}/>;
         } else if (selectedGrade) {
             children = <Grade grade={selectedGrade}
                               onSelectSubject={(subject) => dispatch({type: 'SELECT_SUBJECT', subject})}/>;
